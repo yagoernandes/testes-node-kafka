@@ -3,14 +3,20 @@ import { Kafka } from 'kafkajs'
 import routes from './routes'
 
 
+/**
+ * Inicialização do kafka
+ */
 const kafka = new Kafka({
-    clientId: 'api-producer',
-    brokers: ['kafka:9092']
+    clientId: 'api',
+    brokers: ['localhost:9092']
 })
 const producer = kafka.producer()
 
 
 const app = express()
+/**
+ * Middleware
+ */
 app.use((req, res, next) => {
     req.producer = producer
     console.log(`[${new Date()}] REQUISIÇÃO PARA: ${req.originalUrl}`)
@@ -19,9 +25,11 @@ app.use((req, res, next) => {
 app.use(routes)
 
 
+/**
+ * Execução do servidor
+ */
 async function run() {
-    // await producer.connect()
-
+    await producer.connect()
     app.listen(3333)
 }
 

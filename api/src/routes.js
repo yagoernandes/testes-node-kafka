@@ -2,10 +2,6 @@ import { Router } from 'express'
 
 const routes = Router()
 
-routes.post('/certifications', async (req, res) => {
-    return res.json({ ok: true })
-})
-
 routes.get('/certifications', async (req, res) => {
     await req.producer.send({
         topic: 'test-topic',

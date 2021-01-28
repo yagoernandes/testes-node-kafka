@@ -2,11 +2,11 @@ import { Router } from 'express'
 
 const routes = Router()
 
-routes.get('/certifications', async (req, res) => {
+routes.get('/', async (req, res) => {
     await req.producer.send({
         topic: 'test-topic',
         messages: [
-            { value: 'Hello KafkaJS user!' },
+            { value: 'Hello world from Kafka!' },
         ],
     })
     return res.json({ ok: true })

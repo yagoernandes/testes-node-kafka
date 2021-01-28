@@ -19,7 +19,7 @@ const app = express()
  */
 app.use((req, res, next) => {
     req.producer = producer
-    console.log(`[${new Date()}] REQUISIÇÃO PARA: ${req.originalUrl}`)
+    console.log(`[${new Date().toLocaleString('pt-BR')}] REQUISIÇÃO PARA: ${req.originalUrl}`)
     return next()
 })
 app.use(routes)

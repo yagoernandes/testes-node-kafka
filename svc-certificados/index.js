@@ -14,11 +14,15 @@ const run = async () => {
     await consumer.run({
         eachMessage: async ({ topic, partition, message }) => {
             console.log({
+                topic,
                 partition,
                 offset: message.offset,
+                key: message.key && message.key.toString(),
+                size: message.size,
+                timestamp: message.timestamp,
                 value: message.value.toString(),
             })
-        },
+        }
     })
 }
 

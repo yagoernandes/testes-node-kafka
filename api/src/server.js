@@ -1,14 +1,22 @@
 import express from 'express'
-import { Kafka } from 'kafkajs'
+import { Kafka, logLevel } from 'kafkajs'
 import routes from './routes'
 
+/**
+ * Definição de constantes
+ */
+const {
+    KAFKA_IP = 'localhost',
+    KAFKA_PORT = '9092',
+} = process.env
 
 /**
  * Inicialização do kafka
  */
 const kafka = new Kafka({
     clientId: 'api',
-    brokers: ['localhost:9092']
+    logLevel: logLevel.DEBUG,
+    brokers: [`${KAFKA_IP}:${KAFKA_PORT}`]
 })
 const producer = kafka.producer()
 

@@ -6,7 +6,10 @@ routes.get('/', async (req, res) => {
     await req.producer.send({
         topic: 'test-topic',
         messages: [
-            { value: 'Hello world from Kafka!' },
+            {
+                key: 'Teste',
+                value: 'Hello world from Kafka!'
+            },
         ],
     })
     return res.json({ ok: true })

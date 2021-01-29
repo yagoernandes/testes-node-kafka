@@ -16,7 +16,11 @@ const {
 const kafka = new Kafka({
     clientId: 'api',
     logLevel: logLevel.DEBUG,
-    brokers: [`${KAFKA_IP}:${KAFKA_PORT}`]
+    brokers: [`${KAFKA_IP}:${KAFKA_PORT}`],
+    retry:{
+        initialRetryTime: 300,
+        retries:10,
+    },
 })
 const producer = kafka.producer()
 
